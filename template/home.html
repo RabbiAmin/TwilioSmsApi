@@ -1,0 +1,103 @@
+{% load static %}
+
+<html>
+    {% block content %} 
+    <head>
+        <title>Complimentr</title>
+        <link rel="stylesheet" href="{% static 'assets/main.css' %}">
+    </head>
+<body>
+<div id="app" class="container">
+
+<h1>Compliment</h1>
+
+
+<!-- <h2> Recent Compliments </h2>
+<div class="content">
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message.body }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div> -->
+
+<h2> Send a compliment </h2>
+<form method="post" class="main-form" id="compliment-form">
+  
+  {% csrf_token %}
+
+    <div class="form-row">
+      <label for="to">
+        Your Number
+        <input type="tel" placeholder="+8801712121212" name="number"  id="number"/>
+      </label>
+      <label for="sender">
+        Your Name
+        <input type="text" placeholder="Mr. Rahim Khan" name="sender" id="sender" />
+      </label>
+    </div>
+    <div class="form-row">
+      
+    
+      <label for="compliment">
+        Your compliment
+        <input type="text" placeholder="an amazing person you are!" name="compliment" id="compliment" />
+      </label>
+    </div>
+    <div class="my-3">
+      {% if messages %}
+          &nbsp;
+          <ul class="messages" id="mydiv">
+              {% for message in messages %}
+                  <div {% if message.tags %} class="{{ message.tags }} p-2" {% endif %}>
+                    {{ message }}
+                  </div>
+              {% endfor %}
+          </ul>
+      {% endif %}
+     </div>
+
+    <button type="submit" class="compliment-button">
+      Send compliment
+    </button>
+</form>
+
+
+
+
+
+</div>
+
+<script>
+  // A $( document ).ready() block.
+  $( document ).ready(function() {
+    setTimeout(function () {
+      $('#mydiv').fadeOut('fast');
+  }, 5000); 
+  });   
+</script>
+<style>
+  #mydiv {
+    background: rgba(18, 202, 24, 0.825);
+    background: #18d26e;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  
+    animation: hideAnimation 0s ease-in 2s;
+    animation-fill-mode: forwards;
+      
+  }
+  @keyframes hideAnimation {
+    to {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    }
+  }
+  </style>
+{% endblock %} 
+</body>
+</html>
