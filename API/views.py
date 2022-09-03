@@ -14,11 +14,11 @@ from .forms import complimentForm
 def broadcast_sms(request):
     message_to_broadcast = ("Have you played the incredible TwilioQuest "
                                                 "yet? Grab it here: https://www.twilio.com/quest")
-    client = Client('ACe8b86e623f4ba50e61c777b753fef010', '00c35652ccd342bd53c417fe6f4709be')
+    client = Client('XXXXXXXXXXXXXXX', 'XXXXXXXXXXXXXXXX')
     for recipient in settings.SMS_BROADCAST_TO_NUMBERS:
         if recipient:
             client.messages.create(to=recipient,
-                                   from_=+18623198103,
+                                   from_=+111111111,
                                    body=message_to_broadcast)
     return HttpResponse("messages sent!", 200)
 
